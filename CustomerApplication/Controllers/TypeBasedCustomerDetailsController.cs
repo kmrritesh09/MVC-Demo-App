@@ -17,7 +17,7 @@ namespace CustomerApplication.Controllers
             return View();
         }
 
-        // GET: TypeBasedCustomerDetails/Details/5
+        // Display customer type details
         public ActionResult Details(int id)
         {
             var currentCustomers = 
