@@ -1,0 +1,45 @@
+﻿@model CustomerApplication.Models.TypeCustomers
+
+@{
+    Layout = null;
+
+}
+@{
+    var currentCustomers = (List<CustomerApplication.Models.CustomerObject>)Model.CurrentCustomers;
+    var availableCustomers = (List<CustomerApplication.Models.CustomerObject>)Model.AvailableCustomers;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>@Html.DisplayFor(model => model.CustomerTypeDescription)</h4>
+        <hr />
+
+        <b>Current Customers</b>
+        <ul>
+            @foreach (var c in @currentCustomers) // Print the list
+            {
+                <li>@Html.Label(c.CustomerName)</li>;
+            }
+        </ul>
+
+        <b>Available Customers</b>
+        <ul>
+            @foreach (var c in @availableCustomers) // Print the list
+            {
+                <li>@Html.Label(c.CustomerName)</li>;
+            }
+        </ul>
+    </div>
+    <p>
+        @Html.ActionLink("CustomerTypes", "Index", "CustomerType")
+        @*@Html.ActionLink("Back to List", "Index")*@
+    </p>
+</body>
+</html>

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CustomerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Customer_CustomerType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="CustomerID" Type="int" />
+    <Property Name="CustomerTypeID" Type="int" />
+  </EntityType>
+  <EntityType Name="CustomerType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="50" />
+    <Property Name="IsActive" Type="char" MaxLength="1" />
+  </EntityType>
+  <Association Name="FK__Customer___Custo__60731D3C">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Customer_CustomerType" Type="Self.Customer_CustomerType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Customer_CustomerType">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Customer___Custo__61674175">
+    <End Role="CustomerType" Type="Self.CustomerType" Multiplicity="0..1" />
+    <End Role="Customer_CustomerType" Type="Self.Customer_CustomerType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Customer_CustomerType">
+        <PropertyRef Name="CustomerTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CustomerModelStoreContainer">
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer_CustomerType" EntityType="Self.Customer_CustomerType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerType" EntityType="Self.CustomerType" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Customer___Custo__60731D3C" Association="Self.FK__Customer___Custo__60731D3C">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Customer_CustomerType" EntitySet="Customer_CustomerType" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Customer___Custo__61674175" Association="Self.FK__Customer___Custo__61674175">
+      <End Role="CustomerType" EntitySet="CustomerType" />
+      <End Role="Customer_CustomerType" EntitySet="Customer_CustomerType" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
